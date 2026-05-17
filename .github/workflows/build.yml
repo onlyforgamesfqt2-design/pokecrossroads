@@ -193,11 +193,11 @@ jobs:
             tools/mgba-rom-test-hydra/mgba-rom-test-hydra
           key: tools-check-${{ runner.os }}-${{ hashFiles('tools/*/Makefile', 'tools/**/*.c', 'tools/**/*.cpp', 'tools/**/*.h') }}
 
-    #  - name: Test
-     #   env:
-       #   GAME_VERSION: EMERALD
-        #  TEST: 1
-     #   run: make -j$(nproc) check
+  #    - name: Test
+  #      env:
+  #        GAME_VERSION: EMERALD
+  #        TEST: 1
+  #      run: make -j$(nproc) check
 
   # Gate job: satisfies the "build" branch protection rule.
   # Passes only when all parallel build/test jobs succeed.
@@ -219,6 +219,12 @@ jobs:
       - name: Check that SUMMARY.md includes markdown doc files
         run: .github/docs_validate/inclusive_summary.py
 
+      - name: Upload ROM Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pokemoncrossroads-rom
+          path: "*.gba"
+
   allcontributors:
     if: github.actor == 'allcontributors[bot]'
     runs-on: ubuntu-latest
@@ -226,3 +232,4 @@ jobs:
     steps:
       - name: Automatically pass for allcontributors
         run: echo "CI automatically passes for allcontributors" && exit 0
+        
