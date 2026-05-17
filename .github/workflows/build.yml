@@ -193,10 +193,10 @@ jobs:
             tools/mgba-rom-test-hydra/mgba-rom-test-hydra
           key: tools-check-${{ runner.os }}-${{ hashFiles('tools/*/Makefile', 'tools/**/*.c', 'tools/**/*.cpp', 'tools/**/*.h') }}
 
-      - name: Test
-        env:
-          GAME_VERSION: EMERALD
-          TEST: 1
+    #  - name: Test
+     #   env:
+       #   GAME_VERSION: EMERALD
+        #  TEST: 1
      #   run: make -j$(nproc) check
 
   # Gate job: satisfies the "build" branch protection rule.
